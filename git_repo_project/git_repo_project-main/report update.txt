@@ -1,0 +1,129 @@
+Rapport
+Skriv en sammanhängande text där du beskriver hur och varför du använde olika Git-kommandon i din inlämningsuppgift. Nedan punkter ska du använda dig av för att skriva din rapport.
+Beskriv hur du använde dig av Git i inlämningsuppgiften. Vilka Git-kommandon använde du och varför?
+Jag använde mig av Git i terminalen i Git Bash i Windows tillsammans med Github webtjänsten. 
+Jag skapade först ett projekt i Pycharm och en main.py fil som sparades lokat på min windows maskin. I Git Bash använde jag mig av följande kommandon för att navigera till rätt mapp i filsystemet.
+Del 1: 
+Steg 1:  Skapa Github repo
+Jag skapade ett nytt projekt och main.py fil lokalt på min maskin. 
+C:\Users\lyekl\PycharmProjects\ohshitgit
+I Git Bash terminalen använde jag sedan följande kommandon.
+$ cd /c/Users/lyekl/ för att komma till mina mappar
+$ ls för att lista alla mina mappar
+$ cd ….för att komma till mappen där min main.py fil har sparats, dvs 
+C:\Users\lyekl\PycharmProjects\ohshitgit
+På Github webtjänsten skapade jag ett nytt repo.
+Sedan gick jag tillbaka till Git Bash och i mappen oshitgit så använde jag mig av följande kommandon för att skapa ett nytt repo i kommandotolken
+$ echo "# exercises" >> README.md
+When echoing something to a file, >> appends to the file and > overwrites the file, here the README.md file
+$ git init
+Create empty Git repo in specified directory. Run with no arguments to initialize the current directory as a git repository.
+$ git add README.md
+#Commit the staged snapshot, but instead of launching a text editor, use as the commit message.
+$git commit -m "first commit"
+#Setting the main branch
+$ git branch -M main
+#Create a new connection to a remote repo. After adding a remote, you can use as a shortcut for in other commands.
+$ git remote add origin https://github.com/metalmama/exercises.git
+#push your master branch to your origin/Push the branch to, along with necessary commits and objects. Creates named branch in the remote repo if it doesn’t exist.
+$ git push -u origin main
+Nu har Github repot och upstream samt en README.MD fil skapats och pushats till repot. 
+Jag skapade sedan filerna report.txt och questions.txt
+#Stage change in C:\Users\lyekl\PycharmProjects\ohshitgit
+$ git add main.py
+$ git add questions.txt
+$ git add report.txt
+
+#Commit staged snapshot with message.
+$ git commit -m “Adding new files”
+Nu är de tillagda filerna i repot: main.py, report.txt och questions.txt
+Steg 2:
+Skapade en ny branch via terminalen med detta kommandot.
+#Added a important_changes_git_b argument to create a new branch with the name important_changes_git_b.
+$ git branch important_changes_git_b
+# Switched to newly created branch
+$ git checkout important_changes_git_b.
+Satte upstream för min branch då jag fick ett felmeddelande när jag försökte att enbart använda git push.
+$ git push --set-upstream origin important_changes_git_b_
+Sedan gick jag tillbaka till Pycharm och gjorde min ändring i koden från 100 till 50 loopar och sedan vidare till terminalen i Git Bash-
+#För att stagea ändringarna som jag gjort
+$ git add . 
+# Commit mina ändringar med meddelande ”change loop to 50 times”
+$ git commit -m "change loop to 50 times"
+# Pusha ändringarna till min branch repo
+$ git push
+
+Steg 3
+Använde mig av info från: 
+https://repl.it/talk/learn/Replit-Git-Tutorial/23331/
+Skapade en pull-request från min nya branch “ important_changes_git_b_” in till master branchen.
+Merga branch to main via Github webtjänsten.
+Del 2:
+Skapade en ny branch för att testa exeplet som gavs för steg 1. Jag använde samma kommandon i Git Bash som ovan för att skapa en ny branch och flytta över till denna. 
+Gjorde en test fork enligt exemplet som gavs för steg 1.
+https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo
+Min ”dry run” finns i en branch spoon_knife_fork_test som nu är stängd. Jag lade till report.txt för att öva. Allt detta togs sedan bort men kan ses i loggen på mitt repo.
+Steg 1 
+Följde instruktionerna i https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github/fork-a-repo och använde Git webservice och Git Bash.  
+Använde Jonny Värns repo till min fork.
+Skapade fork i webservice som instruerat genom att klicka på fork ikonen. 
+Step 2: Create a local clone of your fork
+
+Clonade lokalt i oshitgit foldern genom att använda tillvägagångsättet som beskrivs på Github.
+Open Git Bash.
+Change the current working directory to the location where you want the cloned directory.
+Type git clone, and then paste the URL you copied earlier. It will look like this, with your Github username instead of YOUR-USERNAME:
+$ git clone https://github.com/YOUR-USERNAME/Spoon-Knife
+Press Enter. Your local clone will be created.
+$ git clone https://github.com/YOUR-USERNAME/Spoon-Knife
+> Cloning into `Spoon-Knife`...
+> remote: Counting objects: 10, done.
+> remote: Compressing objects: 100% (8/8), done.
+> remove: Total 10 (delta 1), reused 10 (delta 1)
+> Unpacking objects: 100% (10/10), done.
+
+Step 3: Configure Git to sync your fork with the repository (Jonny’s)
+Navigerade till det klonade repot i Git Bash
+$ cd C:\Users\lyekl\PycharmProjects\ohshitgit\super-duper-spoon
+Verifierade och fixade upstream till fork repo.
+Type git remote -v and press Enter. You'll see the current configured remote repository for your fork.
+$ git remote -v
+> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
+> origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+Type git remote add upstream, and then paste the URL you copied in Step 2 and press Enter. It will look like this:
+$ git remote add upstream https://github.com/octocat/Spoon-Knife.git
+
+To verify the new upstream repository you've specified for your fork, type git remote -v again. You should see the URL for your fork as origin, and the URL for the original repository as upstream.
+$ git remote -v
+> origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
+> origin    https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+> upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (fetch)
+> upstream  https://github.com/ORIGINAL_OWNER/ORIGINAL_REPOSITORY.git (push)
+
+Öppnade _main_.py filen i  C:\Users\lyekl\PycharmProjects\ohshitgit\super-duper-spoon i Pycharm 
+Fixade ändringarna i _main_.py filen.
+
+Sedan gick jag tillbaka till Git Bash och använde följande kommadon.
+#För att stagea ändringarna som jag gjort
+$ git add . 
+# Commit mina ändringar med meddelande ”change loop to 50 times”
+$ git commit -m "changed loop from 50 to 100"
+# Pushade ändringarna till repo
+$ git push
+Sedan skapade en pull request till Jonny Värn som han accepterade. 
+Steg 2
+Jag skickade länk till mitt repo till Jonny Värn.
+Jonny Värn gjorde ändringar till mitt repo.
+Jag accepterade och merged ändringarna i Github webtjänsten. 
+Merge pull request #2 from jonnyVarn/improvements …
+
+OBS!
+Jag lade till en _main_.py fil i mitt Pycharm projekt som jag sedan tog bort. Jag städade även upp lite och tog bort spoon-knife klonen. Det är därför som loggen ser ut som nedan i mitt repo.
+
+Vad är fördelen med att använda sig av pull requests när man arbetar i ett team av systemutvecklare?
+Man kan med hjälp av en fork sedan klona deras repo och arbeta på den separat från sin kollegas kod. På så sätt så undviker man merge konflikter och kan även arbeta på ändringar i en isolerad miljö. När du är färdig med dina ändringar kan du via t ex Github webservice skicka tillbaka dina ändringar till kollegan/teamet via en merge request  så att de kan kolla ändringarna innan de accepterar att merga in dina ändringar i deras repo. 
+Varför är det viktigt att använda sig av versionshantering? Vad var fördelarna i förhållande till inlämningsuppgiften? Vad är fördelarna med versionshantering och Git mer generellt sett?
+Git och versionshanteringssystem gör det möjligt att spåra ändringar i din kod och se till att du alltid har möjlighet att backa tillbaka om du råkat göra fel. Att arbeta med versionshantering blir extra viktigt när du börjar arbeta i projekt tillsammans med andra. I denna inlämningsuppgiften var det viktigt att använda sig av versionshantering då vi både ändrade i vårt python program och dessutom ändrade i någon annans kod. Om vi inte hade använt oss av versionshantering och Git hade vi inte tex kunnat gå tillbaka till tidigare ändringar för att se var något gick fel. Det skapar även en logg för hur vi har tänkt och hur koden har utvecklats. Det betyder också att om man kör fast kan man ”dela” sin kod med någon annan som kanske kan lösa problemet och ”skicka tillbaka” koden utan att påverka originalet. 
+
+
+Ju mer utförlig din rapport är, ju lättare är det för läraren 

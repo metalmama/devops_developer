@@ -1,0 +1,59 @@
+Frågor:
+
+1. Vad menas med versionshantering?
+
+Versionshantering (revision control) är ett system för bokföring av olika versioner av en fil. Filerna inom ett versionshanteringssystem kallas repo (repository) och en av de vanligaste webtjänsterna för detta är github. 
+
+2. Vad menas med en “merge” ?
+
+“Merge” är att slå ihop två grenar (branches) man har skapat i sitt repo (versionsarkiv). Det är mycket användbart om man vill att hålla isär kod som är på olika nivåer av utveckling. 
+
+3. Om du vill merga ihop två brancher från terminalen, hur gör du då?
+
+Jag använder mig av Git Bash i Windows. När jag har skapat två brancher så kan jag merga ihop dem via terminalen med följande kommando:
+git branch - lista alla branches så jag har en översikt om vad som finns i mitt repo.
+Håll även koll på vilken branch du arbetar i, t ex “min_branch”.
+git merge - merga branchen “min_andra_branch” in i “min_branch” the current branch.
+Här är ett litet exempel jag hittade för att förtydliga ovanstående beskrivning.
+# on branch A: 
+# create new branch B 
+$ git checkout -b B 
+# hack hack $ git commit -am "commit on branch B" 
+# create new branch C from A 
+$ git checkout -b C A 
+# hack hack $ git commit -am "commit on branch C" 
+# go back to branch A 
+$ git checkout A # hack hack 
+$ git commit -am "commit on branch A"
+Källa:
+https://stackoverflow.com/questions/3404294/merging-2-branches-together-in-git
+https://www.atlassian.com/git/tutorials/using-branches/git-merge
+
+4. Nämn ett alternativ till Git.
+
+SVN (Subversion)
+
+5. Är Git ett verktyg som erbjuds av Github, eller kan man använda Git på andra ställen?
+Nej, man kan använda Git på andra ställen. Github är bara ett av flera verktyg som finns. 
+
+6. Vad menas med en “merge conflict” och när kan det uppstå?
+Versionshanteringsystem handlar om att hantera olika bidrag mellan många olika upphovsmän/utvecklare. Ibland så kan det uppstå situationer där olika upphovsmän/utvecklare försöker ändra samma innehåll. Låt oss säga att Utvecklare A försöker ändra kod som Utvecklare B håller på att ändra, då uppstår en konflikt. Git kan då inte automatiskt bestämma vilken ändring som är rätt och markerar filen som “conflicting” och stoppar merge processen. 
+
+7. Om du vill se en lista med tidigare ändringar / commits i ett Git repo via terminalen, vad skriver du?
+
+Du använder kommandot:
+$ git log
+
+8. När du skriver “git init” i en mapp, på vilket sätt ändras då mappen?
+Git init i en mapp skapar ett tomt Git repo i denna mappen. Om man kör kommandot utan argument så initieras mappen du befinner dig i som ett git repository.
+
+9. Varför vill man dela ibland upp sina ändringar i separata “brancher”?
+För att hålla isär ändringar/olika versioner av koden för att undvika version konflikter samt göra det möjligt att enkelt gå tillbaka till tidigare versioner av koden om man “hamnar på villovägar”. En git branch är i sin essens en pekpinne som pekar mot ett “snap shot” av dina ändringar. 
+
+10. Nämn ett Git command som inte gör några förändringar på remote servern (Github är tex en remote server), Nämn även ett Git command som gör förändringar på remote servern.
+
+Ett Git command som inte gör några förändringar på remote servern är:
+git pull
+
+Ett git command som gör förändringar på remote servern är:
+git push 

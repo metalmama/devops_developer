@@ -1,0 +1,18 @@
+public class JavaProgrammingCourse{
+    public sativoid main(String [] args) {
+        int myAge;
+        double myHeight;
+        int myAge = "38";
+        double myHeight = "1.63";
+        String myName = "Sofie";
+        boolean isProgrammer = true;
+        char firstLetterOfLastName;
+        myAge = 25;
+        myLenghtInMeters = 1.63;
+        firstLetterOfLastName = "L";
+        
+
+
+    
+
+}

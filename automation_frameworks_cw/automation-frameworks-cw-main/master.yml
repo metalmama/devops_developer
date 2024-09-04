@@ -1,0 +1,50 @@
+name: Provision AWS with Terraform
+hosts: localhost
+    vars:
+      - destdir: /var/www/automation_express
+
+tasks:
+  - name: Create AWS instances with Terraform
+    terraform:
+      project_path: .
+      state: present
+    register: ec2_output
+
+  - name: Add instance to hosts file
+    add_host:
+      name: "{{ ec2_output.outputs.public_ip.value }}"
+      groups: ec2
+
+name: Do things on instance            
+hosts: ec2
+sudo: yes
+
+  - name: Wait for host
+      local_action: "wait_for port: 22 host: {{ inventory_hostname }}"
+
+  - name: cloning git repo
+    ansible.builtin.git:
+            repo: "git@gitlab.com:viktorsvensson/automation_express.git"
+            dest: "{{ destdir }}"
+
+    - name: Update apt repo and cache
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+    - name: Install nodejs and npm
+      apt:
+        pkg:
+          - nodejs
+          - npm
+
+    - name: Install dependencies
+      npm:
+        path: "{{ destdir }}"
+    - name: Start the application
+      command:
+        chdir: "{{ destdir }}"
+        cmd: node start
+      async: 1000
+      poll: 0
+    - name: Ensure app is running
+      shell: ps aux | grep node
+      register: app_status
+    - debug: msg={{app_status.stdout_lines}}-
